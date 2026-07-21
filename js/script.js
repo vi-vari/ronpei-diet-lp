@@ -9,7 +9,7 @@
      本番では下記 LINE_URL を実際の LINE 追加 URL に変更してください。
      例) "https://lin.ee/xxxxxxx"
      ---------------------------------------------------------- */
-  var LINE_URL = ""; // ← ここに LINE URL を設定
+  var LINE_URL = "https://lin.ee/rXwNunK"; // LINE 公式アカウント追加 URL
 
   if (LINE_URL) {
     document.querySelectorAll(".js-line").forEach(function (el) {
