@@ -1,0 +1,354 @@
+/* =========================================================
+   体質改善ダイエット講座 LP — responsive stylesheet
+   Design tokens taken from the Figma design (node 428:3)
+   ========================================================= */
+
+:root {
+  --coral:      #f39f88;  /* accent / headings */
+  --coral-soft: #fbe9e2;  /* light accent bg   */
+  --heading:    #4b4f58;  /* sub headings      */
+  --body:       #3a3a3a;  /* main copy         */
+  --muted:      #736357;  /* lists / captions  */
+  --line-green: #4dce6e;  /* LINE CTA button   */
+  --divider:    #e5e5e5;
+  --bg:         #ffffff;
+
+  --content-w:  700px;    /* centered column width */
+
+  --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+          "Yu Gothic", Meiryo, system-ui, sans-serif;
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--body);
+  background: var(--bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+h2, h3, p, ul { margin: 0; }
+ul { list-style: none; padding: 0; }
+
+/* ---------- layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--content-w);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+.section { padding-block: clamp(28px, 6vw, 48px); }
+main > .cta + .section,
+main > .section + .cta { padding-top: 0; }
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--divider);
+  margin: 0 0 clamp(24px, 5vw, 40px);
+}
+
+/* ---------- headings ---------- */
+.eyebrow {
+  color: var(--coral);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 4vw, 1.35rem);
+  letter-spacing: .08em;
+  margin-bottom: 2px;
+}
+.heading {
+  color: var(--coral);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 5.5vw, 1.75rem);   /* ~28px */
+  line-height: 1.4;
+  margin-bottom: clamp(18px, 4vw, 28px);
+}
+.heading--lg { font-size: clamp(1.6rem, 6.5vw, 2rem); } /* ~32px */
+
+/* =========================================================
+   FIRST VIEW (HERO)
+   ========================================================= */
+.fv {
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--coral-soft), #ffffff 70%);
+  padding: 0;
+}
+.fv__inner {
+  max-width: 614px;
+  margin-inline: auto;
+}
+.fv__img {
+  width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+.cta { padding-block: clamp(28px, 6vw, 44px); }
+.cta__box { text-align: center; }
+
+.cta__gift {
+  width: clamp(120px, 34vw, 170px);
+  margin: 0 auto clamp(10px, 3vw, 18px);
+  transform: rotate(-3deg);
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.15));
+}
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  min-height: 56px;
+  padding: 12px 20px;
+  background: var(--line-green);
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(77, 206, 110, .4);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.cta__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(77,206,110,.5); }
+.cta__btn:active { transform: translateY(0); }
+.cta__btn-ico { width: 1em; height: 1em; fill: currentColor; flex: none; }
+
+.cta__lead {
+  margin-top: clamp(16px, 4vw, 22px);
+  color: var(--body);
+  font-size: clamp(.95rem, 3.8vw, 1.05rem);
+  font-weight: 500;
+}
+.cta__sub {
+  margin-top: 6px;
+  color: var(--body);
+  font-size: clamp(.85rem, 3.4vw, .95rem);
+}
+.cta__price { font-weight: 700; }
+
+/* =========================================================
+   BEFORE / AFTER
+   ========================================================= */
+.ba__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vw, 32px);
+}
+.ba__item {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   CONCEPT
+   ========================================================= */
+.concept__p {
+  color: var(--body);
+  font-size: 1rem;
+  margin-bottom: 1.1em;
+}
+.concept__p:last-child { margin-bottom: 0; }
+
+/* =========================================================
+   VOICE (Instagram-style grid)
+   ========================================================= */
+.voice__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(6px, 1.5vw, 10px);
+}
+.voice__grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.voice__note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(16px, 4vw, 22px);
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* =========================================================
+   3つのこだわり  /  shared "feature" blocks
+   ========================================================= */
+.feature { margin-bottom: clamp(32px, 6vw, 48px); }
+.feature:last-child { margin-bottom: 0; }
+.feature__title {
+  color: var(--heading);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4.2vw, 1.125rem); /* ~18px */
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.feature__img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.feature__text { color: var(--muted); font-size: 1rem; }
+
+/* =========================================================
+   STAFF
+   ========================================================= */
+.staff__card {
+  display: flex;
+  gap: clamp(16px, 4vw, 28px);
+  align-items: center;
+  margin-bottom: clamp(18px, 4vw, 26px);
+}
+.staff__photo {
+  width: clamp(110px, 28vw, 160px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  flex: none;
+  border: 4px solid var(--coral-soft);
+}
+.staff__name {
+  color: var(--heading);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 4.2vw, 1.125rem);
+  margin-bottom: 12px;
+}
+.staff__text { color: var(--muted); font-size: 1rem; }
+
+/* =========================================================
+   check-list (staff / shop)
+   ========================================================= */
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 5px 0;
+}
+.ico-check {
+  width: 1.1em;
+  height: 1.1em;
+  color: var(--coral);
+  flex: none;
+  margin-top: .2em;
+}
+
+/* =========================================================
+   SHOP INFO
+   ========================================================= */
+.shop__img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: clamp(18px, 4vw, 26px);
+}
+.shop .checklist { margin-bottom: clamp(18px, 4vw, 26px); }
+.shop__map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+.shop__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* =========================================================
+   REASONS (bordered cards)
+   ========================================================= */
+.reason {
+  border: 2px solid var(--divider);
+  border-radius: 10px;
+  padding: clamp(20px, 5vw, 32px);
+  margin-bottom: clamp(20px, 4vw, 28px);
+}
+.reason:last-child { margin-bottom: 0; }
+.reason__title {
+  color: var(--coral);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 4.8vw, 1.625rem);  /* ~26px */
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+.reason__img {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 18px;
+  border-radius: 8px;
+}
+.reason__img--cert {
+  max-width: 320px;
+  border: 1px solid var(--divider);
+  padding: 8px;
+  background: #fff;
+}
+.reason__text { color: var(--muted); font-size: 1rem; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  background: var(--coral-soft);
+  text-align: center;
+  padding: clamp(28px, 6vw, 40px) 20px;
+  margin-top: clamp(28px, 6vw, 48px);
+}
+.footer__addr { color: var(--heading); font-weight: 500; font-size: .95rem; }
+.footer__copy { color: var(--muted); font-size: .8rem; margin-top: 8px; }
+
+/* =========================================================
+   STICKY MOBILE CTA
+   ========================================================= */
+.sticky-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%) translateY(150%);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: calc(100% - 32px);
+  max-width: 420px;
+  min-height: 54px;
+  padding: 12px 18px;
+  background: var(--line-green);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  transition: transform .3s ease;
+}
+.sticky-cta.is-visible { transform: translateX(-50%) translateY(0); }
+.sticky-cta .cta__btn-ico { width: 1em; height: 1em; fill: currentColor; }
+
+/* show sticky CTA only on small screens */
+@media (min-width: 768px) {
+  .sticky-cta { display: none; }
+}
+
+/* =========================================================
+   RESPONSIVE TWEAKS
+   ========================================================= */
+@media (max-width: 480px) {
+  .staff__card { flex-direction: column; text-align: center; }
+  .staff__card .staff__body { width: 100%; }
+  .checklist li { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
