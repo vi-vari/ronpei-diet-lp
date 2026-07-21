@@ -307,11 +307,25 @@ main > .section + .cta { padding-top: 0; }
   margin: 0 auto 18px;
   border-radius: 8px;
 }
-.reason__img--cert {
-  max-width: 320px;
+/* 資格証（縦長の原本）を横向きに表示。回転に合わせて枠のアスペクト比を landscape に */
+.cert-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 18px;
+  aspect-ratio: 4299 / 3035;   /* 90°回転後の横長比率（元画像 3035×4299） */
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--divider);
-  padding: 8px;
   background: #fff;
+  border-radius: 8px;
+}
+.cert-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% * 3035 / 4299);   /* = 枠の高さ */
+  height: calc(100% * 4299 / 3035);  /* = 枠の幅  */
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 .reason__text { color: var(--muted); font-size: 1rem; }
 
