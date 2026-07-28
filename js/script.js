@@ -1,15 +1,15 @@
-/* =========================================================
-   体質改善ダイエット講座 LP — interactions
-   ========================================================= */
+/* =========================================================================
+   ビオ接骨院 小牧院（育毛治療院）LP — interactions
+   ========================================================================= */
 (function () {
   "use strict";
 
-  /* ----------------------------------------------------------
-     1) LINE の公式アカウント URL を一括設定
-     本番では下記 LINE_URL を実際の LINE 追加 URL に変更してください。
-     例) "https://lin.ee/xxxxxxx"
-     ---------------------------------------------------------- */
-  var LINE_URL = "https://lin.ee/rXwNunK"; // LINE 公式アカウント追加 URL
+  /* --------------------------------------------------------------
+     LINE 公式アカウントの追加 URL を全 CTA に一括設定。
+     本番では下記 LINE_URL を実際の URL（例: "https://lin.ee/xxxxxxx"）に
+     変更してください。空文字のままだと href="#" のままになります。
+     -------------------------------------------------------------- */
+  var LINE_URL = ""; // ← ここに LINE 追加 URL を設定
 
   if (LINE_URL) {
     document.querySelectorAll(".js-line").forEach(function (el) {
@@ -19,53 +19,18 @@
     });
   }
 
-  /* ----------------------------------------------------------
-     2) モバイル用スティッキー CTA の表示制御
-        ・ファーストビューを過ぎたら表示
-        ・通常の CTA ボタンが画面内にあるときは隠す（重複回避）
-     ---------------------------------------------------------- */
+  /* --------------------------------------------------------------
+     画面下の固定 CTA バー：最下部（フッター）まで来たら重複を避けて隠す。
+     -------------------------------------------------------------- */
   var sticky = document.querySelector(".sticky-cta");
-  var hero = document.querySelector(".fv");
-  if (!sticky || !hero) return;
+  var footer = document.querySelector(".site-footer");
+  if (!sticky || !footer || !("IntersectionObserver" in window)) return;
 
-  var pastHero = false;
-  var ctaVisible = false;
-
-  function update() {
-    if (pastHero && !ctaVisible) {
-      sticky.classList.add("is-visible");
-    } else {
-      sticky.classList.remove("is-visible");
-    }
-  }
-
-  if ("IntersectionObserver" in window) {
-    // hero 監視
-    new IntersectionObserver(function (entries) {
-      pastHero = !entries[0].isIntersecting;
-      update();
-    }, { threshold: 0 }).observe(hero);
-
-    // 各 CTA ボタン監視
-    var ctaObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        e.target.dataset.inview = e.isIntersecting ? "1" : "0";
-      });
-      ctaVisible = Array.prototype.some.call(
-        document.querySelectorAll(".cta__btn"),
-        function (b) { return b.dataset.inview === "1"; }
-      );
-      update();
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll(".cta__btn").forEach(function (b) {
-      ctaObserver.observe(b);
+  new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      sticky.style.transform = e.isIntersecting ? "translateY(120%)" : "translateY(0)";
     });
-  } else {
-    // フォールバック
-    window.addEventListener("scroll", function () {
-      pastHero = window.scrollY > hero.offsetHeight;
-      update();
-    }, { passive: true });
-  }
+  }, { threshold: 0 }).observe(footer);
+
+  sticky.style.transition = "transform .25s ease";
 })();
