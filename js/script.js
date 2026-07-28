@@ -9,7 +9,7 @@
      本番では下記 LINE_URL を実際の URL（例: "https://lin.ee/xxxxxxx"）に
      変更してください。空文字のままだと href="#" のままになります。
      -------------------------------------------------------------- */
-  var LINE_URL = ""; // ← ここに LINE 追加 URL を設定
+  var LINE_URL = "https://line.me/R/ti/p/@729eivtp?oat_content=url&ts=07061813"; // LINE 公式アカウント追加 URL
 
   if (LINE_URL) {
     document.querySelectorAll(".js-line").forEach(function (el) {
